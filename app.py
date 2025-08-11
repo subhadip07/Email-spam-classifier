@@ -4,6 +4,8 @@ import string
 from nltk.corpus import stopwords
 import nltk
 from nltk.stem.porter import PorterStemmer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import train_test_split
 
 ps = PorterStemmer()
 
@@ -32,9 +34,9 @@ def transform_text(text):
 
     return " ".join(y)
 
-tfidf = pickle.load(open('../model/vectorizer.pkl', 'rb'))
+tfidf = pickle.load(open('./model/vectorizer.pkl', 'rb'))
 
-model = pickle.load(open('../model/model.pkl', 'rb'))
+model = pickle.load(open('./model/model.pkl', 'rb'))
 
 st.title("Email/SMS Spam Classifier")
 
@@ -56,4 +58,3 @@ if st.button('Predict'):
         st.header("Spam")
     else:
         st.header("Not Spam")
-        
